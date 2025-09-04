@@ -2,6 +2,16 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 const Order = require("../models/Order");
 
+// Public endpoint - no authentication required
+exports.getPublicProducts = async (req,res,next) => {
+  try {
+    const products = await Product.find();
+    res.status(200).json({ products });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
 exports.getData = async (req,res,next) => {
   try {
     const userId = req.user;

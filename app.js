@@ -27,7 +27,9 @@ app.use(cors());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/auth', authRouter);
 app.use('/api/seller', isLoggedIn,isSeller,sellerRouter);
-app.use('/api/customer', isLoggedIn,isCustomer,customerRouter);
+// Public customer routes (no auth required)
+app.use('/api/customer', customerRouter);
+// Protected customer routes will be handled within the router
 
 app.use(errorController.get404);
 

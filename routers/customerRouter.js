@@ -2,6 +2,9 @@ const express = require('express');
 const customerController = require('../controllers/customerController');
 const customerRouter = express.Router();
 
+// Public route - no authentication required
+customerRouter.get('/products',customerController.getPublicProducts);
+
 customerRouter.get('/data',customerController.getData);
 customerRouter.post('/cart/:id',customerController.addToCart);
 customerRouter.delete('/cart/:id',customerController.removeFromCart)
